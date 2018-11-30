@@ -24,7 +24,7 @@ module.exports = {
     ],
   },
   devServer: {
-    port: 8000,
+    port:  process.env.PORT,
     contentBase: 'static',
     proxy: {
       '/api/*': {
