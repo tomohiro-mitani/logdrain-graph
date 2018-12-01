@@ -72,8 +72,6 @@ MongoClient.connect(process.env.MONGODB_URI).then(connection => {
 }).catch(error => {
   console.log('ERROR:', error);
 });
-
-
 /*
 MongoClient.connect('mongodb://localhost/issuetracker').then(connection => {
   db = connection;
@@ -82,8 +80,8 @@ MongoClient.connect('mongodb://localhost/issuetracker').then(connection => {
   });
 }).catch(error => {
   console.log('ERROR:', error);
-  */
 });
+*/
 /*
 app.listen(process.env.PORT);
 */
