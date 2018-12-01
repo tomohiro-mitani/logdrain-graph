@@ -53,8 +53,8 @@ app.post('/api/issues', (req, res) => {
 
 MongoClient.connect('mongodb://localhost/issuetracker').then(connection => {
   db = connection;
-  app.listen(3000, () => {
-    console.log('App started on port 3000');
+  app.listen(process.env.PORT, () => {
+    console.log('App started.');
   });
 }).catch(error => {
   console.log('ERROR:', error);
