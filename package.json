@@ -39,6 +39,9 @@
     "express": "^4.14.0",
     "mongodb": "^2.2.6",
     "source-map-support": "^0.4.2",
+    "react-native-svg": "^8.0.8",
+    "react-native-svg-charts": "^5.2.0",
+    "recharts": "^1.4.1",
     "nodemon": "~1.0.14"
   },
   "devDependencies": {

@@ -51,10 +51,23 @@ app.post('/api/issues', (req, res) => {
   });
 });
 
+app.get('/api/graph', (req, res) => {
+  db.collection('graph').find().toArray()
+  .then(graph => {
+    const metadata = { total_count: graph.length };
+    res.json({ _metadata: metadata, records: graph });
+  })
+  .catch(error => {
+    console.log(error);
+    res.status(500).json({ message: `Internal Server Error: ${error}` });
+  });
+});
+
+
 MongoClient.connect(process.env.MONGODB_URI).then(connection => {
   db = connection;
   app.listen(process.env.PORT, () => {
-    console.log('App started on port 3000');
+    console.log('App started');
   });
 }).catch(error => {
   console.log('ERROR:', error);
@@ -69,7 +82,8 @@ MongoClient.connect('mongodb://localhost/issuetracker').then(connection => {
   });
 }).catch(error => {
   console.log('ERROR:', error);
+  */
 });
-
+/*
 app.listen(process.env.PORT);
 */
