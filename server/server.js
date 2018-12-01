@@ -51,7 +51,7 @@ app.post('/api/issues', (req, res) => {
   });
 });
 
-MongoClient.connect('mongodb://heroku_vws4hdqb:p236rjldek9tcj9vi49ebuoh7m@ds123434.mlab.com:23434/heroku_vws4hdqb').then(connection => {
+MongoClient.connect(process.env.MONGODB_URI).then(connection => {
   db = connection;
   app.listen(process.env.PORT, () => {
     console.log('App started on port 3000');
