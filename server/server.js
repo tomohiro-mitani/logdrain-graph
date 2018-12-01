@@ -50,6 +50,17 @@ app.post('/api/issues', (req, res) => {
     res.status(500).json({ message: `Internal Server Error: ${error}` });
   });
 });
+
+MongoClient.connect('mongodb://heroku_vws4hdqb:p236rjldek9tcj9vi49ebuoh7m@ds123434.mlab.com:23434/heroku_vws4hdqb').then(connection => {
+  db = connection;
+  app.listen(process.env.PORT, () => {
+    console.log('App started on port 3000');
+  });
+}).catch(error => {
+  console.log('ERROR:', error);
+});
+
+
 /*
 MongoClient.connect('mongodb://localhost/issuetracker').then(connection => {
   db = connection;
@@ -59,5 +70,6 @@ MongoClient.connect('mongodb://localhost/issuetracker').then(connection => {
 }).catch(error => {
   console.log('ERROR:', error);
 });
-*/
+
 app.listen(process.env.PORT);
+*/
