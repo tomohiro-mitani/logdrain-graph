@@ -50,12 +50,14 @@ app.post('/api/issues', (req, res) => {
     res.status(500).json({ message: `Internal Server Error: ${error}` });
   });
 });
-
+/*
 MongoClient.connect('mongodb://localhost/issuetracker').then(connection => {
   db = connection;
-  app.listen(process.env.PORT, () => {
-    console.log('App started.');
+  app.listen(3000, () => {
+    console.log('App started on port 3000');
   });
 }).catch(error => {
   console.log('ERROR:', error);
 });
+*/
+app.listen(process.env.PORT);
