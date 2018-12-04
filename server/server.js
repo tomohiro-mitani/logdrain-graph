@@ -61,7 +61,9 @@ app.post('/api/issues', (req, res) => {
 
 app.post('/api/logs', (req, res) => {
   const logdrain = req.body;
-console.log(logdrain);
+  console.log('echo!');
+  console.log(logdrain);
+  console.log('Scream!');
 });
 
 
