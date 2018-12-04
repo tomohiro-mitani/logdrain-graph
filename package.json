@@ -37,12 +37,14 @@
     "babel-polyfill": "^6.13.0",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "express-basic-auth": "^1.1.6",
     "mongodb": "^2.2.6",
-    "source-map-support": "^0.4.2",
+    "nodemon": "~1.0.14",
     "react-native-svg": "^8.0.8",
     "react-native-svg-charts": "^5.2.0",
     "recharts": "^1.4.1",
-    "nodemon": "~1.0.14"
+    "source-map-support": "^0.4.2",
+    "express-basic-auth": "^1.1.6"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",

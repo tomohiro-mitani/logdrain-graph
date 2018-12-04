@@ -8,8 +8,16 @@ import { MongoClient } from 'mongodb';
 import Issue from './issue.js';
 
 const app = express();
+const basicAuth = require('express-basic-auth')
+
 app.use(express.static('static'));
 app.use(bodyParser.json());
+app.use(basicAuth({
+    users: { 'user': 'pass' },
+    challenge: true,
+    realm: 'Imb4T3st4pp',
+}))
+
 
 let db;
 
@@ -50,6 +58,12 @@ app.post('/api/issues', (req, res) => {
     res.status(500).json({ message: `Internal Server Error: ${error}` });
   });
 });
+
+app.post('/api/logs', (req, res) => {
+  const logdrain = req.body;
+console.log(logdrain);
+});
+
 
 app.get('/api/graph', (req, res) => {
   db.collection('graph').find().toArray()
