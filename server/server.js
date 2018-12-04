@@ -60,9 +60,9 @@ app.post('/api/issues', (req, res) => {
 });
 
 app.post('/logs', (req, res) => {
-  const logdrain = req.body;
+//  const logdrain = req.body;
   console.log('echo!');
-  console.log(logdrain);
+//  console.log(logdrain);
   console.log(req.body);
   console.log('Scream!');
   res.status(200).json({ message: `OK:`});
