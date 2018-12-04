@@ -59,7 +59,7 @@ app.post('/api/issues', (req, res) => {
   });
 });
 
-app.post('/api/logs', (req, res) => {
+app.post('/logs', (req, res) => {
   const logdrain = req.body;
   console.log('echo!');
   console.log(logdrain);
