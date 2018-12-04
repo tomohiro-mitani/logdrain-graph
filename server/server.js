@@ -9,9 +9,10 @@ import Issue from './issue.js';
 
 const app = express();
 const basicAuth = require('express-basic-auth')
+//var syslogParser = require('glossy').Parse;
 
 app.use(express.static('static'));
-app.use(bodyParser.json());
+app.use(bodyParser.text({ type: 'application/logplex-1' }));
 app.use(basicAuth({
     users: { 'user': 'pass' },
     challenge: true,
