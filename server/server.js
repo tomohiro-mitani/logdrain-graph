@@ -63,8 +63,9 @@ app.post('/logs', (req, res) => {
   const logdrain = req.body;
   console.log('echo!');
   console.log(logdrain);
+  console.log(req.body);
   console.log('Scream!');
-  res.status(200).json({ message: `OK` });
+  res.status(200).json({ message: `OK:`});
   return;
 });
 
