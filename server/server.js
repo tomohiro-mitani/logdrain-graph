@@ -9,7 +9,7 @@ import Issue from './issue.js';
 
 const app = express();
 const basicAuth = require('express-basic-auth')
-//var syslogParser = require('glossy').Parse;
+var syslogParser = require('glossy').Parse;
 
 app.use(express.static('static'));
 app.use(bodyParser.text({ type: 'application/logplex-1' }));
@@ -60,7 +60,27 @@ app.post('/api/issues', (req, res) => {
   });
 });
 
-app.post('/logs', (req, res) => {
+// Express allows arrays-of-middleware to act as a "single" middleware.
+var logplexMiddleware = [
+  // First, read the message body into `req.body`, making sure it only
+  // accepts logplex "documents".
+  require('body-parser').text({ type: 'application/logplex-1' }),
+  // Next, split `req.body` into separate lines and parse each one using
+  // the `glossy` syslog parser.
+  function(req, res, next) {
+    req.body = (req.body || '').split(/\r*\n/).filter(function(line) {
+      // Make sure we only parse lines that aren't empty.
+      return line.length !== 0;
+    }).map(function(line) {
+      // glossy doesn't like octet counts to be prepended to the log lines,
+      // so remove those.
+      return syslogParser.parse(line.replace(/^\d+\s+/, ''));
+    });
+    next();
+  }
+];
+
+app.post('/logs', logplexMiddleware, (req, res) => {
 //  const logdrain = req.body;
   console.log('echo!');
 //  console.log(logdrain);
