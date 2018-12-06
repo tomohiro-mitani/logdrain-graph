@@ -108,7 +108,7 @@ var logplexMiddleware = [
 
 
 
-app.post('/logs', (req, res) => {
+app.post('/logs',logplexMiddleware, (req, res) => {
   var logdrain = req.body;
   console.log('Begining!');
   console.log(logdrain);
