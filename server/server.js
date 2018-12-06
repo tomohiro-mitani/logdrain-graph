@@ -81,12 +81,12 @@ var logplexMiddleware = [
 ];
 
 app.post('/logs', logplexMiddleware, (req, res) => {
-  var logdrain = req.body;
-  var source = "o";
-  var web = "l";
-  var match = logdrain.match(new RegExp(source + "(.*)" + web));
+  var logdrain = require('body-parser').text(req.body);
+  //var source = "o";
+  //var web = "l";
+  //var match = logdrain.match(new RegExp(source + "(.*)" + web));
   console.log('Begining!');
-  console.log(match);
+  console.log(logdrain);
   console.log('end!');
   res.status(200).json({ message: `OK:`});
   return;
