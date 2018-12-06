@@ -68,9 +68,10 @@ var logplexMiddleware = [
   // Next, split `req.body` into separate lines and parse each one using
   // the `q` syslog parser.
   function(req, res, next) {
-    req.body = (req.body || '').split(/\r*\n/).filter(function(line) {
+    req.body = (req.body || '').split(/\r*\n/)
+    .filter(function(line) {
       // Make sure we only parse lines that aren't empty.
-      return (line.length !== 0) && (line.includes("source"));
+      return line.length !== 0 && line.includes("source");
     }).map(
 
          function(line) {
