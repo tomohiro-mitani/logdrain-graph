@@ -59,7 +59,7 @@ app.post('/api/issues', (req, res) => {
     res.status(500).json({ message: `Internal Server Error: ${error}` });
   });
 });
-
+/*
 // Express allows arrays-of-middleware to act as a "single" middleware.
 var logplexMiddleware = [
   // First, read the message body into `req.body`, making sure it only
@@ -79,7 +79,7 @@ var logplexMiddleware = [
     next();
   }
 ];
-/*
+
 app.post('/logs', logplexMiddleware, (req, res) => {
   var logdrain = req.body;
   console.log('Begining!');
@@ -89,6 +89,25 @@ app.post('/logs', logplexMiddleware, (req, res) => {
   return;
 });
 */
+var regex = /message\s*(.*?)\s*web/g;
+var logplexMiddleware = [
+
+  // First, read the message body into `req.body`, making sure it only
+  // accepts logplex "documents".
+  require('body-parser').text({ type: 'application/logplex-1' }),
+  // Next, split `req.body` into separate lines and parse each one using
+  // the `q` syslog parser.
+
+  function(req, res) {
+    req.body = (req.body || '').substring(
+      req.body.lastIndexOf("message") + 1, 
+      req.body.lastIndexOf("memory_quota")
+      );
+  }
+];
+
+
+
 app.post('/logs', (req, res) => {
   var logdrain = req.body;
   console.log('Begining!');
