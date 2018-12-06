@@ -87,7 +87,10 @@ app.post('/logs', logplexMiddleware, (req, res) => {
   var sourceline = JSON.stringify(logdrain);
   var original =  JSON.parse(sourceline).originalMessage;
 //  console.log(sourceline);
+  var stringoriginl = JSON.stringify(original);
   console.log(original);
+  console.log(`${original}`);
+  console.log(stringoriginl);
   
 //  console.log(logdrain);
   console.log('end!');
