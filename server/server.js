@@ -79,16 +79,20 @@ var logplexMiddleware = [
     next();
   }
 ];
-
+/*
 app.post('/logs', logplexMiddleware, (req, res) => {
   var logdrain = req.body;
-
-//  var obj = JSON.parse(logdrain);
   console.log('Begining!');
-
-//  console.log(obj);
   console.log(logdrain);
-  console.log(logdrain.originalMessage);
+  console.log('end!');
+  res.status(200).json({ message: `OK:`});
+  return;
+});
+*/
+app.post('/logs', (req, res) => {
+  var logdrain = req.body;
+  console.log('Begining!');
+  console.log(logdrain);
   console.log('end!');
   res.status(200).json({ message: `OK:`});
   return;
