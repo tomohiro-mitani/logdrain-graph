@@ -70,15 +70,15 @@ var logplexMiddleware = [
   function(req, res, next) {
     req.body = (req.body || '').split(/\r*\n/).filter(function(line) {
       // Make sure we only parse lines that aren't empty.
-      return line.length !== 0;
+      return line.length !== 0 && line.includes("source");
     }).map(
-    if(line.includes("source=")){
+
          function(line) {
       // glossy doesn't like octet counts to be prepended to the log lines,
       // so remove those.
           return syslogParser.parse(line.replace(/^\d+\s+/, '')); 
         }
-    }
+      
     );
     next();
   }
