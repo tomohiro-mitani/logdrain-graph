@@ -74,7 +74,7 @@ var logplexMiddleware = [
     }).map(function(line) {
       // glossy doesn't like octet counts to be prepended to the log lines,
       // so remove those.
-      return syslogParser.parse(line.match(/message\s*(.*?)\s*web/g));
+      return syslogParser.parse(line.match(/source=\s*(.*?)\s*\r*\n/g));
     });
     next();
   }
