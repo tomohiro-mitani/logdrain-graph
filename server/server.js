@@ -81,7 +81,7 @@ var logplexMiddleware = [
 ];
 
 app.post('/logs', logplexMiddleware, (req, res) => {
-  var logdrain = bodyParser.toString(req.body);
+  var logdrain = req.body;
   var source = "o";
   var web = "l";
   var match = logdrain.match(new RegExp(source + "(.*)" + web));
