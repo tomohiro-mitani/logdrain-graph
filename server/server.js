@@ -74,7 +74,7 @@ var logplexMiddleware = [
     }).map(function(line) {
       // glossy doesn't like octet counts to be prepended to the log lines,
       // so remove those.
-      return syslogParser.parse(line.match(/source=\s*(.*?)\s*\r*\n/g));
+      return syslogParser.parse(line.replace(/^\d+\s+/, ''));
     });
     next();
   }
@@ -82,12 +82,14 @@ var logplexMiddleware = [
 
 app.post('/logs', logplexMiddleware, (req, res) => {
   var logdrain = req.body;
+  logdrain.match(/play\s*(.*?)\s*in/g);
   console.log('Begining!');
   console.log(logdrain);
   console.log('end!');
   res.status(200).json({ message: `OK:`});
   return;
 });
+
 
 
 
