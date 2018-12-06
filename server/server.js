@@ -82,9 +82,9 @@ var logplexMiddleware = [
 
 app.post('/logs', logplexMiddleware, (req, res) => {
   var logdrain = req.body;
-  logdrain.match(/play\s*(.*?)\s*in/g);
+  var match = logdrain.match(/source\s*(.*?)\s*web/g);
   console.log('Begining!');
-  console.log(logdrain);
+  console.log(match);
   console.log('end!');
   res.status(200).json({ message: `OK:`});
   return;
