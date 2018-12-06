@@ -12,7 +12,7 @@ const basicAuth = require('express-basic-auth')
 var syslogParser = require('glossy').Parse;
 
 app.use(express.static('static'));
-app.use(bodyParser.text({ type: 'application/logplex-1' }));
+//app.use(bodyParser.text({ type: 'application/logplex-1' }));
 app.use(basicAuth({
     users: { 'user': 'pass' },
     challenge: true,
@@ -81,10 +81,10 @@ var logplexMiddleware = [
 ];
 
 app.post('/logs', logplexMiddleware, (req, res) => {
-  var logdrain = require('body-parser').text(req.body);
-  //var source = "o";
-  //var web = "l";
-  //var match = logdrain.match(new RegExp(source + "(.*)" + web));
+  var logdrain =req.body;
+  var source = "o";
+  var web = "l";
+  var match = logdrain.match(new RegExp(source + "(.*)" + web));
   console.log('Begining!');
   console.log(logdrain);
   console.log('end!');
