@@ -85,6 +85,7 @@ app.post('/logs', logplexMiddleware, (req, res) => {
   console.log('echo!');
   //var sourceline = String(logdrain).match(/^.*source=.*$/mgi);
   var sourceline = JSON.stringify(logdrain);
+  console.log(sourceline);
   console.log(sourceline.originalMessage);
 //  console.log(logdrain);
   console.log('Scream!');
