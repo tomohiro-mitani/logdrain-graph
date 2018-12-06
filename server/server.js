@@ -82,17 +82,11 @@ var logplexMiddleware = [
 
 app.post('/logs', logplexMiddleware, (req, res) => {
   var logdrain = req.body;
+  var obj = JSON.parse(logdrain);
   console.log('Begining!');
-  //var sourceline = String(logdrain).match(/^.*source=.*$/mgi);
-  var sourceline = JSON.stringify(logdrain);
-  var original =  JSON.parse(sourceline).originalMessage;
-//  console.log(sourceline);
-  var stringoriginl = JSON.stringify(original);
-  console.log(original);
-  console.log(`${original}`);
-  console.log(stringoriginl);
-  
-//  console.log(logdrain);
+
+  console.log(logdrain);
+  console.log(logdrain.originalMessage);
   console.log('end!');
   res.status(200).json({ message: `OK:`});
   return;
