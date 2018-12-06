@@ -82,9 +82,11 @@ var logplexMiddleware = [
 
 app.post('/logs', logplexMiddleware, (req, res) => {
   var logdrain = req.body;
-  var obj = JSON.parse(logdrain);
+
+//  var obj = JSON.parse(logdrain);
   console.log('Begining!');
 
+//  console.log(obj);
   console.log(logdrain);
   console.log(logdrain.originalMessage);
   console.log('end!');
