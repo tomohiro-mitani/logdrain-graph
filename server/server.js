@@ -70,7 +70,7 @@ var logplexMiddleware = [
   function(req, res, next) {
     req.body = (req.body || '').split(/\r*\n/).filter(function(line) {
       // Make sure we only parse lines that aren't empty.
-      return line.length !== 0 && line.includes("source");
+      return (line.length !== 0) && (line.includes("source"));
     }).map(
 
          function(line) {
