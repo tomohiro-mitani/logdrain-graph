@@ -91,7 +91,7 @@ app.post('/logs', logplexMiddleware, (req, res) => {
   //var regex = /source\s*(.*?)\s*MB/g;
   var match = logdrain.match(new RegExp(/source\s*(.*?)\s*MB/g));
   console.log('Begining!');
-  console.log(logdrain);
+  console.log(match);
   console.log('end!');
   res.status(200).json({ message: `OK:`});
   return;
