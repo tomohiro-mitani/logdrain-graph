@@ -88,9 +88,8 @@ var logplexMiddleware = [
 
 app.post('/logs', logplexMiddleware, (req, res) => {
   var logdrain =String(req.body);
-  var source = "o";
-  var web = "l";
-  var match = logdrain.match(new RegExp(source + "(.*)" + web));
+  var regex = /source\s*(.*?)\s*MB/g;
+  var match = logdrain.match(new RegExp(regex);
   console.log('Begining!');
   console.log(logdrain);
   console.log('end!');
