@@ -91,12 +91,13 @@ app.post('/logs', logplexMiddleware, (req, res) => {
 
   var value = logdrain.match(new RegExp(/#memory_total=\s*(.*?)\s*MB/g));
   var memory = String(value).match(new RegExp(/(?<=#memory_total=).*?(?=MB)/g));
-  var obj = JSON.parse({ "name": memory });
-  
+  if (memory !==  null){
+    var obj = { total_memory: memory };
+    console.log('Begining!');
+    console.log(JSON.stringify(obj));
+    console.log('end!');    
+  }
 
-  console.log('Begining!');
-  console.log(obj);
-  console.log('end!');
   res.status(200).json({ message: `OK:`});
   return;
 });
