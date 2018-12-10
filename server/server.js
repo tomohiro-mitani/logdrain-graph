@@ -93,9 +93,10 @@ app.post('/logs', logplexMiddleware, (req, res) => {
   var memory = String(value).match(new RegExp(/(?<=#memory_total=).*?(?=MB)/g));
   if (memory !==  null){
     var obj = { total_memory: memory };
-    console.log('Begining!');
+//    console.log('Begining!');
+    console.log(logdrain)
     console.log(JSON.stringify(obj));
-    console.log('end!');    
+//    console.log('end!');    
   }
 
   res.status(200).json({ message: `OK:`});
