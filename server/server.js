@@ -91,7 +91,7 @@ app.post('/logs', logplexMiddleware, (req, res) => {
   //var regex = /source\s*(.*?)\s*MB/g;
   var memory = logdrain.match(new RegExp(/#memory_total=\s*(.*?)\s*MB/g));
 //cow(.*)milk
-  var value = String(memory).match(new RegExp(/memory_total(.*)MB/g));
+  var value = String(memory).match(new RegExp(/#memory_total(.*)MB/g));
   console.log('Begining!');
 //    console.log(logdrain);
   console.log(match);
