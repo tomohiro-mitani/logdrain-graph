@@ -89,9 +89,10 @@ var logplexMiddleware = [
 app.post('/logs', logplexMiddleware, (req, res) => {
   var logdrain =String(req.body);
   //var regex = /source\s*(.*?)\s*MB/g;
-  var match = logdrain.match(new RegExp(/load-avg\s*(.*?)\s*MB/g));
+  var match = logdrain.match(new RegExp(/load_avg_1m=\s*(.*?)\s* /g));
   console.log('Begining!');
   console.log(logdrain);
+  console.log(match);
   console.log('end!');
   res.status(200).json({ message: `OK:`});
   return;
