@@ -94,7 +94,7 @@ app.post('/logs', logplexMiddleware, (req, res) => {
   var value = String(memory).match(new RegExp(/#memory_total(.*)MB/g));
   console.log('Begining!');
 //    console.log(logdrain);
-  console.log(match);
+  console.log(memory);
   console.log(value);
   console.log('end!');
   res.status(200).json({ message: `OK:`});
