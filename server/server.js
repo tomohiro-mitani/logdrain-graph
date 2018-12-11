@@ -103,8 +103,7 @@ app.post('/logs', logplexMiddleware, (req, res) => {
     .next()
   )
   .then(savedIssue => {
-    //res.json(obj);
-    res.status(200).json({ message: `OK:`});
+    res.status(200).json({ message: `saved in Mongodb`});
   })
   .catch(error => {
     console.log(error);
@@ -114,8 +113,10 @@ app.post('/logs', logplexMiddleware, (req, res) => {
     console.log(loggedtime);
 //    console.log('end!');    
   }
-
-  //res.status(200).json({ message: `OK:`});
+  else {
+  res.status(200).json({ message: `OK:`});  
+  }
+  //
   return;
 });
 
