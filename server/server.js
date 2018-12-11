@@ -103,7 +103,8 @@ app.post('/logs', logplexMiddleware, (req, res) => {
     .next()
   )
   .then(savedIssue => {
-    res.json(obj);
+    //res.json(obj);
+    res.status(200).json({ message: `OK:`});
   })
   .catch(error => {
     console.log(error);
