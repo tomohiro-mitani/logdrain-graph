@@ -93,7 +93,8 @@ app.post('/logs', logplexMiddleware, (req, res) => {
   var loggedtime = logdrain.match(new RegExp(/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))T[012]\d:[0-5]\d:[0-5]\d.\d{6}/g));
   var memory = String(value).match(new RegExp(/(?<=#memory_total=).*?(?=MB)/g));
   if (memory !==  null){
-    var obj = { log_time: loggedtime, total_memory: memory };
+    var primitiveMemory = memory.valueOf();
+    var obj = { log_time: loggedtime, total_memory: primitiveMemory };
 //    console.log('Begining!');
     console.log(logdrain);
     console.log(JSON.stringify(obj));
