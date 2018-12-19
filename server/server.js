@@ -86,8 +86,6 @@ app.post('/logs', logplexMiddleware, (req, res) => {
 });
 
 
-
-
 app.get('/api/graph', (req, res) => {
   db.collection('graph').find().toArray()
   .then(graph => {
