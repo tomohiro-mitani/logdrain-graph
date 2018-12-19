@@ -5,7 +5,6 @@ import 'babel-polyfill';
 import express from 'express';
 import bodyParser from 'body-parser';
 import { MongoClient } from 'mongodb';
-import Issue from './issue.js';
 
 const app = express();
 const basicAuth = require('express-basic-auth')
