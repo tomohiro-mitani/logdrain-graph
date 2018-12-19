@@ -92,30 +92,32 @@ app.post('/logs', logplexMiddleware, (req, res) => {
   var value = logdrain.match(new RegExp(/#memory_total=\s*(.*?)\s*MB/g));
   var loggedtime = logdrain.match(new RegExp(/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))T[012]\d:[0-5]\d:[0-5]\d.\d{6}/g));
   var memory = String(value).match(new RegExp(/(?<=#memory_total=).*?(?=MB)/g));
+
   if (memory !==  null){
     var sLoggedtime = String(loggedtime[0]);
     var memory_time = new Date(sLoggedtime);
     var sMemory = String(memory[0]);
     
+    // Create JSON object
     var obj = { log_time: memory_time, total_memory: sMemory };
-//    console.log('Begining!');
+
+    // Store object in Mongo DB
+    db.collection('logs').insertOne(obj).then(result =>
+      db.collection('logs').find({ _id: result.insertedId }).limit(1)
+      .next()
+    )
+    .then(savedIssue => {
+      res.status(200).json({ message: `saved in Mongodb`});
+    })
+    .catch(error => {
+      console.log(error);
+      res.status(500).json({ message: `Internal Server Error: ${error}` });
+    });
+    
+    // Results on the console
     console.log(logdrain);
     console.log(JSON.stringify(obj));
-
-  db.collection('logs').insertOne(obj).then(result =>
-    db.collection('logs').find({ _id: result.insertedId }).limit(1)
-    .next()
-  )
-  .then(savedIssue => {
-    res.status(200).json({ message: `saved in Mongodb`});
-  })
-  .catch(error => {
-    console.log(error);
-    res.status(500).json({ message: `Internal Server Error: ${error}` });
-  });
-
     console.log(loggedtime);
-//    console.log('end!');    
   }
   else {
   res.status(200).json({ message: `OK:`});  
