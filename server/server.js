@@ -117,7 +117,6 @@ app.post('/logs', logplexMiddleware, (req, res) => {
     // Results on the console
     console.log(logdrain);
     console.log(JSON.stringify(obj));
-    console.log(loggedtime);
   }
   else {
   res.status(200).json({ message: `OK:`});  
