@@ -95,9 +95,9 @@ app.post('/logs', logplexMiddleware, (req, res) => {
   if (memory !==  null){
     var sLoggedtime = String(loggedtime[0]);
     var memory_time = new Date(sLoggedtime);
-    var sMemory = String(value[0]);
-
-    var obj = { log_time: sMemory, total_memory: memory_time };
+    var sMemory = String(memory[0]);
+    
+    var obj = { log_time: memory_time, total_memory: sMemory };
 //    console.log('Begining!');
     console.log(logdrain);
     console.log(JSON.stringify(obj));
